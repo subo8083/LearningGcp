@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+        
+    spec:
+      containers:
+      - name: myapp-container
+        #image: ssadcloud/myapp:latest   # For DOCKER HUB
+        image: 932589472370.dkr.ecr.us-east-2.amazonaws.com/myapp-ecr:latest
+        ports:
+        - containerPort: 8080
